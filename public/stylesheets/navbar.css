@@ -1,0 +1,43 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+.flexcenter{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nav{
+    height: 10vh;
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+}
+
+.navlinks{
+  width: 40%;
+  gap: 2vw;
+}
+
+.navlinks a{
+  text-decoration: none;
+  color: black;
+}
+
+.logo{
+  width: 20%;
+}
+
+.profile-cart{
+  width: 40%;
+  gap: 5vw;
+}

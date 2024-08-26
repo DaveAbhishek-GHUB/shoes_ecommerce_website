@@ -4,7 +4,7 @@ const router = express.Router();
 
 // Define the root route
 router.get("/", function(req, res){
-    res.send("Heyy its working")
+    res.render('index');
 });
 
 // Export the router

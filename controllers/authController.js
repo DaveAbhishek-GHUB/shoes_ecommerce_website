@@ -49,3 +49,32 @@ module.exports.registerUser = async function (req, res) {
         res.send(err.message);
     }
 };
+
+module.exports.loginUser = async function (req, res) {
+    // Extract email and password from request body
+    let {email, password} = req.body;
+
+    // Find user in database by email
+    let user = await userModel.findOne({email: email});
+
+    // If user doesn't exist, send message to register
+    if(!user){
+        return res.send("You need to register first");
+    }
+
+    // Compare provided password with stored hashed password
+    bcrypt.compare(password, user.password, function(err, result){
+        if(result){
+            // If passwords match
+            // Generate a token for the user
+            let token = generateToken(user);
+            // Set the token as a cookie
+            res.cookie("token", token);
+            // Send success message
+            res.send("login Successfully");
+        }else{
+            // If passwords don't match, send error message
+            return res.send("email or password incorrect");
+        }
+    });
+};

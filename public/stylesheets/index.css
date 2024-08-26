@@ -1,0 +1,146 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+.main{
+    height: 100dvh;
+    width: 100vw;
+}
+
+/* Hero section start here */
+
+.hero-section{
+    position: relative;
+}
+
+.hero-section video{
+    height: 100vh;
+    width: 100vw;
+    object-fit: cover;
+}
+
+.hero-section .shop-btn{
+    position: absolute;
+    bottom: 5vw;
+    left: 5vw;
+}
+
+.hero-section .shop-btn button{
+    padding: 2vw 8vw;
+    border: none;
+    border-radius: 1vw;
+    color: white;
+    background-color: rgb(184, 40, 40);
+    cursor: pointer;
+}
+
+/* hero section ends here */
+
+/* product-section start here */
+
+.product-section{
+    width: 100vw;
+    min-height: 80vh;
+}
+
+.products{  
+    width: 33%;
+    height: 100%;
+    position: relative;
+}
+
+.product-section-heading{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.product-section .products-showcase{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    gap: 1vw;
+    padding: 20px;
+}
+
+.product01 img,
+.product02 img,
+.product03 img{
+    height: 100%;
+    width: 100%;
+    border-radius: 1vw;
+}
+
+.products-showcase .product-info{
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+.product-info .nameandprice{
+    display: flex;
+    justify-content: space-between;
+    font-size: 1vw;
+    padding: 10px;
+}
+
+.product-info .readmorebtn{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.3vw;
+    background-color: #61534B;
+    border-bottom-left-radius: 1vw;
+    border-bottom-right-radius: 1vw;
+    padding: 10px;
+}
+
+.product-info .readmorebtn a{
+    text-decoration: none;
+    color: white;
+}
+
+/* product section end here */
+
+/* ourspace section start here */
+
+.ourspace-section{
+    height: 100dvh;
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+}
+
+.ourspace-image{
+    height: 100%;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ourspace-image img{
+    height: 90%;
+    width: 80%;
+    border-radius: 1vw;
+}
+
+.ourspace-text{
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 2vw;
+    padding: 40px 50px;
+}
+
+/* ourspace section end here */
