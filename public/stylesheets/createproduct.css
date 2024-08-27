@@ -1,0 +1,97 @@
+.page-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.content-container {
+    display: flex;
+    flex-grow: 1;
+    padding: 80px 40px;
+}
+
+.sidebar {
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.sidebar-links {
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-links a{
+    text-decoration: none;
+    color: black;
+    font-size: 1.5vw;
+}
+
+.sidebar-link {
+    display: block;
+    width: fit-content;
+    margin-bottom: 8px;
+}
+
+.main-content {
+    width: 75%;
+    background-color: white;
+    padding: 32px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-left: 16px;
+}
+
+.page-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+
+.form-section {
+    margin-bottom: 24px;
+}
+
+.section-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.file-input-container {
+    margin-bottom: 16px;
+}
+
+.file-input-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.file-input {
+    padding: 8px 16px;
+    border-radius: 4px;
+}
+
+.input-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.input-field {
+    border: 1px solid #ccc;
+    padding: 8px;
+    border-radius: 4px;
+    width: 100%;
+}
+
+.submit-button {
+    padding: 8px 20px;
+    border-radius: 4px;
+    margin-top: 12px;
+    background-color: #3b82f6;
+    color: white;
+    border: none;
+    cursor: pointer;
+}

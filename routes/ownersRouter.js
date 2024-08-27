@@ -25,4 +25,8 @@ router.post("/create", async function(req, res){
     res.status(201).send(createdOwner);
 });
 
+router.get("/admin", function(req, res){
+    res.render('createproduct');
+})
+
 module.exports = router;

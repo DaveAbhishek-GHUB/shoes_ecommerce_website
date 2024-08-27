@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>store</title>
+    <link rel="stylesheet" href="/stylesheets/shop.css">
+</head>
+<body>
+    <div class="main">
+        <%- include('./partials/navbar') %>
+        <div class="heading">
+            <h1>Explore our products</h1>
+        </div>
+        <div class="product-section">
+            <div class="products-showcase">
+                <% products.forEach(function(product){ %>
+                    <div class="product01 products">
+                        <img src="data:image/jpeg;base64,<%= product.image.toString('base64') %>" alt="product01-img">
+                        <div class="product-info">
+                            <div class="nameandprice">
+                                <span><%= product.name %></span>
+                                <span>MRP : ₹<%= product.price %></span>
+                            </div>
+                            <div class="readmorebtn">
+                                <a href="">shopnow</a>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#ffffff" fill="none">
+                                    <path d="M20.0001 11.9998L4.00012 11.9998" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M15.0003 17C15.0003 17 20.0002 13.3176 20.0002 12C20.0002 10.6824 15.0002 7 15.0002 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <% }) %>
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>

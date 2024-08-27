@@ -10,6 +10,7 @@ const dbConnection = require('./config/mongodb-connection');
 const indexRouter = require('./routes/indexRouter');
 const ownersRouter = require("./routes/ownersRouter");
 const userRouter = require("./routes/userRouter");
+const productRouter = require("./routes/productRouter");
 
 // Set the view engine to EJS
 app.set('view engine', 'ejs');
@@ -27,6 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use("/", indexRouter);
 app.use("/owners", ownersRouter);
 app.use("/users", userRouter);
+app.use("/product", productRouter);
 
 // Start the server
 app.listen(port, () => {

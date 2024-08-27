@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>create product</title>
+    <link rel="stylesheet" href="/stylesheets/createproduct.css">
+</head>
+<body>
+    <%- include('./partials/navbar') %>
+
+<div class="page-container">
+    <div class="content-container">
+        <div class="sidebar">
+            <div class="sidebar-links">
+                <a href="" class="sidebar-link">Create new product</a>
+            </div>
+        </div>
+        <main class="main-content">
+            <h2 class="page-title">Create New Product</h2>
+            <form autocomplete="off" action="/product/create" method="post" enctype="multipart/form-data">
+                <div class="form-section">
+                    <h3 class="section-title">Product Details</h3>
+                    <div class="file-input-container">
+                        <label class="file-input-label">Product Image</label>
+                        <input name="image" type="file" class="file-input" value="Select File">
+                    </div>
+                    <div class="input-grid">
+                        <input name="name" type="text" placeholder="Product Name" class="input-field">
+                        <input name="price" type="text" placeholder="Product Price" class="input-field">
+                        <input name="discount" type="text" placeholder="Discount Price" class="input-field">
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3 class="section-title">Panel Details</h3>
+                    <div class="input-grid">
+                        <input name="bgcolor" type="text" placeholder="Background Color" class="input-field">
+                        <input name="panelcolor" type="text" placeholder="Panel Color" class="input-field">
+                        <input name="textcolor" type="text" placeholder="Text Color" class="input-field">
+                    </div>
+                </div>
+                <input class="submit-button" type="submit" value="Create New Product">
+            </form>
+        </main>
+    </div>
+</div>
+</body>
+</html>
