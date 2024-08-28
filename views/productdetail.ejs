@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= product.name %> - Product Details</title>
+    <link rel="stylesheet" href="/stylesheets/productdetail.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <%- include('./partials/navbar') %>
+    <div class="container">
+        <div class="product-image">
+            <img src="data:image/jpeg;base64,<%= product.image.toString('base64') %>" alt="<%= product.name %>">
+        </div>
+        <div class="product-details">
+            <h1 class="product-name"><%= product.name %></h1>
+            <div class="price-container">
+                <div class="product-price">
+                    <span class="original-price">Rs. <%= product.price %></span>
+                </div>
+                <div class="product-discount">Save Rs. <%= product.discount %></div>
+            </div>
+            <div class="product-quantity">
+                <label for="quantity">Quantity:</label>
+                <div class="quantity-controls">
+                    <button class="quantity-btn" onclick="updateQuantity(-1)">-</button>
+                    <input type="number" id="quantity" value="1" min="1" onchange="updateTotal()">
+                    <button class="quantity-btn" onclick="updateQuantity(1)">+</button>
+                </div>
+            </div>
+            <div class="product-total">Total: Rs. <span id="total"></span></div>
+            <button class="add-to-cart" onclick="addToCart()">
+                <i class="fas fa-shopping-cart"></i> Add to Cart
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Calculate discounted price
+        const originalPrice = <%= product.price %>;
+        const discount = <%= product.discount %>;
+        const discountedPrice = originalPrice - discount;
+    
+        // Function to update item quantity
+        function updateQuantity(change) {
+            const quantityInput = document.getElementById('quantity');
+            let newQuantity = parseInt(quantityInput.value) + change;
+            if (newQuantity < 1) newQuantity = 1;
+            quantityInput.value = newQuantity;
+            updateTotal();
+        }
+    
+        // Function to calculate and update the total price
+        function updateTotal() {
+            const quantity = parseInt(document.getElementById('quantity').value);
+            const total = (discountedPrice * quantity).toFixed(0);
+            document.getElementById('total').textContent = total;
+        }
+    
+        // Function to add the product to the cart
+        function addToCart() {
+            fetch('/addtocart/<%= product._id %>', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Product added to cart successfully!');
+                } else {
+                    alert('Failed to add product to cart. Please try again.');
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+            });
+        }
+    
+        // Initialize the total on page load
+        updateTotal();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart</title>
+    <link rel="stylesheet" href="/stylesheets/cart.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Your Cart</h1>
+        <div class="cart">
+            <% if (user.cart && user.cart.length > 0) { %>
+                <% user.cart.forEach((product, index) => { %>
+                    <div class="cart-item" data-product-id="<%= product._id %>">
+                        <img class="item-image" src="data:image/jpeg;base64,<%= product.image.toString('base64') %>" alt="<%= product.name %>">
+                        <div class="item-details">
+                            <div class="item-name"><%= product.name %></div>
+                            <div class="item-price">Rs. <%= product.price - product.discount %></div>
+                            <div class="item-quantity">
+                                <button class="quantity-btn" onclick="updateQuantity('<%= product._id %>', -1)">-</button>
+                                <input type="text" class="quantity-input" value="1" readonly>
+                                <button class="quantity-btn" onclick="updateQuantity('<%= product._id %>', 1)">+</button>
+                            </div>
+                        </div>
+                        <button class="remove-btn" onclick="removeItem('<%= product._id %>')">Remove</button>
+                    </div>
+                <% }); %>
+                <div class="cart-total">
+                    Total: Rs. <span id="total-price">0</span>
+                </div>
+                <button class="checkout-btn" onclick="proceedToCheckout()">Proceed to Checkout</button>
+            <% } else { %>
+                <p>Your cart is empty.</p>
+            <% } %>
+        </div>
+    </div>
+    <script>
+        // Parse the cart data from the server
+        let cart = <%- JSON.stringify(user.cart) %>;
+    
+        // Function to update item quantity
+        function updateQuantity(productId, change) {
+            const quantityInput = document.querySelector(`.cart-item[data-product-id="${productId}"] .quantity-input`);
+            let newQuantity = parseInt(quantityInput.value) + change;
+            if (newQuantity < 1) newQuantity = 1;
+            quantityInput.value = newQuantity;
+            updateTotal();
+        }
+    
+        // Function to remove an item from the cart
+        function removeItem(productId) {
+            const itemElement = document.querySelector(`.cart-item[data-product-id="${productId}"]`);
+            itemElement.remove();
+            updateTotal();
+            
+            // Send request to server to remove item from cart
+            fetch(`/removefromcart/${productId}`, { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    if (!data.success) {
+                        alert('Failed to remove item from cart. Please try again.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An error occurred. Please try again.');
+                });
+        }
+    
+        // Function to calculate and update the total price
+        function updateTotal() {
+            const total = Array.from(document.querySelectorAll('.cart-item')).reduce((sum, item) => {
+                const price = parseFloat(item.querySelector('.item-price').textContent.replace('Rs. ', ''));
+                const quantity = parseInt(item.querySelector('.quantity-input').value);
+                return sum + price * quantity;
+            }, 0);
+            document.getElementById('total-price').textContent = total.toFixed(2);
+        }
+    
+        // Function to handle checkout process
+        function proceedToCheckout() {
+            alert('Proceeding to checkout...');
+        }
+    
+        // Initialize the total on page load
+        updateTotal();
+    </script>
+</body>
+</html>

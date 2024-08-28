@@ -2,6 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const ownerModel = require("../models/owner-model");
+const isLoggedin = require("../middlewares/isLoggenin");
 
 // POST route to create a new owner
 router.post("/create", async function(req, res){
@@ -25,7 +26,9 @@ router.post("/create", async function(req, res){
     res.status(201).send(createdOwner);
 });
 
-router.get("/admin", function(req, res){
+// Define a route for the '/admin' path
+router.get("/admin", isLoggedin, function(req, res){
+    // Render the 'createproduct' view
     res.render('createproduct');
 })
 

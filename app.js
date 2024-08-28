@@ -4,6 +4,7 @@ const app = express();
 const path = require('path');
 const port = 3000;
 require('dotenv').config();
+const cookieParser = require('cookie-parser');
 
 // Import custom modules
 const dbConnection = require('./config/mongodb-connection');
@@ -14,6 +15,8 @@ const productRouter = require("./routes/productRouter");
 
 // Set the view engine to EJS
 app.set('view engine', 'ejs');
+
+app.use(cookieParser());
 
 // Middleware to parse JSON bodies
 app.use(express.json());

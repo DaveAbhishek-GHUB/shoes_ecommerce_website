@@ -37,6 +37,11 @@ nav{
   width: 20%;
 }
 
+.logo a{
+  text-decoration: none;
+  color: black;
+}
+
 .profile-cart{
   width: 40%;
   gap: 5vw;
